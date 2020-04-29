@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<serviceGroup>
+	<service name="LoanService">
+		<parameter name="ServiceClass">fr.jydet.services.LoanService</parameter>
+		<operation name="calculateMonthlyDue">
+			<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+	</service>
+</serviceGroup>

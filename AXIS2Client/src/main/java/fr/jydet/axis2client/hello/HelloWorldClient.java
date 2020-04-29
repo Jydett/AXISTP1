@@ -4,7 +4,7 @@ package fr.jydet.axis2client.hello;
 public class HelloWorldClient {
     public static void main(String[] args){
         try {
-            HelloWorldStub stub = new HelloWorldStub("http://localhost:8080/AXIS2Server_war_exploded/services/HelloWorld");
+            HelloWorldStub stub = new HelloWorldStub();
 
             HelloWorldStub.SayHelloWorldFrom request = new HelloWorldStub.SayHelloWorldFrom();
             request.setFrom("client");

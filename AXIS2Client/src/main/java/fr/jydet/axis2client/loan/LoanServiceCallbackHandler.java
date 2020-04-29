@@ -42,8 +42,7 @@ public abstract class LoanServiceCallbackHandler {
      * auto generated Axis2 call back method for calculateMonthlyDue method
      * override this method for handling normal response from calculateMonthlyDue operation
      */
-    public void receiveResultcalculateMonthlyDue(
-        fr.jydet.axis2client.loan.LoanServiceStub.CalculateMonthlyDueResponse result) {
+    public void receiveResultcalculateMonthlyDue() {
     }
 
     /**
@@ -51,5 +50,20 @@ public abstract class LoanServiceCallbackHandler {
      * override this method for handling error response from calculateMonthlyDue operation
      */
     public void receiveErrorcalculateMonthlyDue(java.lang.Exception e) {
+    }
+
+    /**
+     * auto generated Axis2 call back method for calculateDue method
+     * override this method for handling normal response from calculateDue operation
+     */
+    public void receiveResultcalculateDue(
+        LoanServiceStub.CalculateDueResponse result) {
+    }
+
+    /**
+     * auto generated Axis2 Error handler
+     * override this method for handling error response from calculateDue operation
+     */
+    public void receiveErrorcalculateDue(java.lang.Exception e) {
     }
 }

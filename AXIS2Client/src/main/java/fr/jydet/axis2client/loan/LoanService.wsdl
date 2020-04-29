@@ -2,16 +2,16 @@
     <wsdl:documentation>LoanService</wsdl:documentation>
     <wsdl:types>
         <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://services.jydet.fr">
-            <xs:element name="calculateMonthlyDue">
+            <xs:element name="calculateDue">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="amount" type="xs:double"/>
-                        <xs:element name="loanDuration" type="xs:int"/>
-                        <xs:element name="annualFee" type="xs:int"/>
+                        <xs:element name="maturitiesCount" type="xs:int"/>
+                        <xs:element name="annualFee" type="xs:double"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="calculateMonthlyDueResponse">
+            <xs:element name="calculateDueResponse">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="return" type="xs:double"/>
@@ -20,22 +20,37 @@
             </xs:element>
         </xs:schema>
     </wsdl:types>
-    <wsdl:message name="calculateMonthlyDueRequest">
-        <wsdl:part name="parameters" element="ns:calculateMonthlyDue"/>
+    <wsdl:message name="calculateMonthlyDueRequest"/>
+    <wsdl:message name="calculateMonthlyDueResponse"/>
+    <wsdl:message name="calculateDueRequest">
+        <wsdl:part name="parameters" element="ns:calculateDue"/>
     </wsdl:message>
-    <wsdl:message name="calculateMonthlyDueResponse">
-        <wsdl:part name="parameters" element="ns:calculateMonthlyDueResponse"/>
+    <wsdl:message name="calculateDueResponse">
+        <wsdl:part name="parameters" element="ns:calculateDueResponse"/>
     </wsdl:message>
     <wsdl:portType name="LoanServicePortType">
         <wsdl:operation name="calculateMonthlyDue">
             <wsdl:input message="ns:calculateMonthlyDueRequest" wsaw:Action="urn:calculateMonthlyDue"/>
             <wsdl:output message="ns:calculateMonthlyDueResponse" wsaw:Action="urn:calculateMonthlyDueResponse"/>
         </wsdl:operation>
+        <wsdl:operation name="calculateDue">
+            <wsdl:input message="ns:calculateDueRequest" wsaw:Action="urn:calculateDue"/>
+            <wsdl:output message="ns:calculateDueResponse" wsaw:Action="urn:calculateDueResponse"/>
+        </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="LoanServiceSoap11Binding" type="ns:LoanServicePortType">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
         <wsdl:operation name="calculateMonthlyDue">
             <soap:operation soapAction="urn:calculateMonthlyDue" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="calculateDue">
+            <soap:operation soapAction="urn:calculateDue" style="document"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -55,11 +70,29 @@
                 <soap12:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
+        <wsdl:operation name="calculateDue">
+            <soap12:operation soapAction="urn:calculateDue" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
     </wsdl:binding>
     <wsdl:binding name="LoanServiceHttpBinding" type="ns:LoanServicePortType">
         <http:binding verb="POST"/>
         <wsdl:operation name="calculateMonthlyDue">
             <http:operation location="calculateMonthlyDue"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="calculateDue">
+            <http:operation location="calculateDue"/>
             <wsdl:input>
                 <mime:content type="application/xml" part="parameters"/>
             </wsdl:input>

@@ -7,7 +7,7 @@ import javax.jws.WebService;
 public class LoanService {
 
     @WebMethod
-    public double calculateMonthlyDue(double amount, int loanDuration, int annualFee) {
-        return 0;
+    public double calculateDue(double amount, int maturitiesCount, double annualFee) {
+        return annualFee / (double) maturitiesCount * amount;
     }
 }

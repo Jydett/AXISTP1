@@ -1,0 +1,4 @@
+# Project exclude paths
+/AXIS2Client/target/
+/AXIS2Server/target/
+/AXISServer/target/

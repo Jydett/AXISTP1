@@ -1,70 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://services.jydet.fr" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.jydet.fr" xmlns:intf="http://services.jydet.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<!--WSDL created by Apache Axis version: 1.4
-Built on Apr 22, 2006 (06:55:48 PDT)-->
- <wsdl:types>
-  <schema elementFormDefault="qualified" targetNamespace="http://services.jydet.fr" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="SSN" type="xsd:string"/>
-   <element name="isValidReturn" type="xsd:boolean"/>
-  </schema>
- </wsdl:types>
-
-   <wsdl:message name="isValidRequest">
-
-      <wsdl:part element="impl:SSN" name="SSN"/>
-
-   </wsdl:message>
-
-   <wsdl:message name="isValidResponse">
-
-      <wsdl:part element="impl:isValidReturn" name="isValidReturn"/>
-
-   </wsdl:message>
-
-   <wsdl:portType name="SSNChecker">
-
-      <wsdl:operation name="isValid" parameterOrder="SSN">
-
-         <wsdl:input message="impl:isValidRequest" name="isValidRequest"/>
-
-         <wsdl:output message="impl:isValidResponse" name="isValidResponse"/>
-
-      </wsdl:operation>
-
-   </wsdl:portType>
-
-   <wsdl:binding name="SSNCheckerSoapBinding" type="impl:SSNChecker">
-
-      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="isValid">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="isValidRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="isValidResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-   </wsdl:binding>
-
-   <wsdl:service name="SSNCheckerService">
-
-      <wsdl:port binding="impl:SSNCheckerSoapBinding" name="SSNChecker">
-
-         <wsdlsoap:address location="http://localhost:8080//services/fr/jydet/services/SSNChecker"/>
-
-      </wsdl:port>
-
-   </wsdl:service>
-
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://services.jydet.fr" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" targetNamespace="http://services.jydet.fr">
+    <wsdl:documentation>SSNChecker</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://services.jydet.fr">
+            <xs:element name="isValid">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="SSN" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="isValidResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="isValidRequest">
+        <wsdl:part name="parameters" element="ns:isValid"/>
+    </wsdl:message>
+    <wsdl:message name="isValidResponse">
+        <wsdl:part name="parameters" element="ns:isValidResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="SSNCheckerPortType">
+        <wsdl:operation name="isValid">
+            <wsdl:input message="ns:isValidRequest" wsaw:Action="urn:isValid"/>
+            <wsdl:output message="ns:isValidResponse" wsaw:Action="urn:isValidResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SSNCheckerSoap11Binding" type="ns:SSNCheckerPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="isValid">
+            <soap:operation soapAction="urn:isValid" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SSNCheckerSoap12Binding" type="ns:SSNCheckerPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="isValid">
+            <soap12:operation soapAction="urn:isValid" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SSNCheckerHttpBinding" type="ns:SSNCheckerPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="isValid">
+            <http:operation location="isValid"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SSNChecker">
+        <wsdl:port name="SSNCheckerHttpSoap11Endpoint" binding="ns:SSNCheckerSoap11Binding">
+            <soap:address location="http://localhost:8080/AXIS2Server_war_exploded/services/SSNChecker.SSNCheckerHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="SSNCheckerHttpSoap12Endpoint" binding="ns:SSNCheckerSoap12Binding">
+            <soap12:address location="http://localhost:8080/AXIS2Server_war_exploded/services/SSNChecker.SSNCheckerHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="SSNCheckerHttpEndpoint" binding="ns:SSNCheckerHttpBinding">
+            <http:address location="http://localhost:8080/AXIS2Server_war_exploded/services/SSNChecker.SSNCheckerHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
 </wsdl:definitions>

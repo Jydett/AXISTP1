@@ -1,5 +1,5 @@
 /**
- * SSNCheckerServiceStub.java
+ * SSNCheckerStub.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.7.9  Built on : Nov 16, 2018 (12:05:37 GMT)
@@ -8,9 +8,9 @@ package fr.jydet.axis2client.nss;
 
 
 /*
- *  SSNCheckerServiceStub java implementation
+ *  SSNCheckerStub java implementation
  */
-public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
+public class SSNCheckerStub extends org.apache.axis2.client.Stub {
     private static int counter = 0;
     protected org.apache.axis2.description.AxisOperation[] _operations;
 
@@ -23,7 +23,7 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
     /**
      *Constructor that takes in a configContext
      */
-    public SSNCheckerServiceStub(
+    public SSNCheckerStub(
         org.apache.axis2.context.ConfigurationContext configurationContext,
         java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(configurationContext, targetEndpoint, false);
@@ -32,7 +32,7 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Constructor that takes in a configContext  and useseperate listner
      */
-    public SSNCheckerServiceStub(
+    public SSNCheckerStub(
         org.apache.axis2.context.ConfigurationContext configurationContext,
         java.lang.String targetEndpoint, boolean useSeparateListener)
         throws org.apache.axis2.AxisFault {
@@ -47,12 +47,16 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
                       .setTo(new org.apache.axis2.addressing.EndpointReference(
                 targetEndpoint));
         _serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
+
+        //Set the soap version
+        _serviceClient.getOptions()
+                      .setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
     }
 
     /**
      * Default Constructor
      */
-    public SSNCheckerServiceStub(
+    public SSNCheckerStub(
         org.apache.axis2.context.ConfigurationContext configurationContext)
         throws org.apache.axis2.AxisFault {
         this(configurationContext,
@@ -62,14 +66,15 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Default Constructor
      */
-    public SSNCheckerServiceStub() throws org.apache.axis2.AxisFault {
-        this("http://localhost:8080/AXIS2Server_war_exploded/services/SSNChecker.SSNCheckerHttpSoap12Endpoint/");
+    public SSNCheckerStub() throws org.apache.axis2.AxisFault {
+        this(
+            "http://localhost:8080/AXIS2Server_war_exploded/services/SSNChecker.SSNCheckerHttpSoap12Endpoint/");
     }
 
     /**
      * Constructor taking the target endpoint
      */
-    public SSNCheckerServiceStub(java.lang.String targetEndpoint)
+    public SSNCheckerStub(java.lang.String targetEndpoint)
         throws org.apache.axis2.AxisFault {
         this(null, targetEndpoint);
     }
@@ -88,8 +93,8 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
 
     private void populateAxisService() throws org.apache.axis2.AxisFault {
         //creating the Service with a unique name
-        _service = new org.apache.axis2.description.AxisService(
-                "SSNCheckerService" + getUniqueSuffix());
+        _service = new org.apache.axis2.description.AxisService("SSNChecker" +
+                getUniqueSuffix());
         addAnonymousOperations();
 
         //creating the operations
@@ -113,18 +118,17 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      *
-     * @see fr.jydet.axis2client.nss.SSNCheckerService#isValid
-     * @param sSN0
+     * @see fr.jydet.axis2client.nss.SSNChecker#isValid
+     * @param isValid0
      */
-    public fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn isValid(
-        fr.jydet.axis2client.nss.SSNCheckerServiceStub.SSN sSN0)
+    public fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse isValid(
+        fr.jydet.axis2client.nss.SSNCheckerStub.IsValid isValid0)
         throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
         try {
             org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[0].getName());
-            _operationClient.getOptions()
-                            .setAction("http://services.jydet.fr/SSNChecker/isValidRequest");
+            _operationClient.getOptions().setAction("urn:isValid");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
             addPropertyToOperationClient(_operationClient,
@@ -136,12 +140,12 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
 
             env = toEnvelope(getFactory(_operationClient.getOptions()
                                                         .getSoapVersionURI()),
-                    sSN0,
+                    isValid0,
                     optimizeContent(
                         new javax.xml.namespace.QName(
                             "http://services.jydet.fr", "isValid")),
                     new javax.xml.namespace.QName("http://services.jydet.fr",
-                        "SSN"));
+                        "isValid"));
 
             //adding SOAP soap_headers
             _serviceClient.addHeadersToEnvelope(env);
@@ -159,9 +163,9 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
 
             java.lang.Object object = fromOM(_returnEnv.getBody()
                                                        .getFirstElement(),
-                    fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn.class);
+                    fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse.class);
 
-            return (fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn) object;
+            return (fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse) object;
         } catch (org.apache.axis2.AxisFault f) {
             org.apache.axiom.om.OMElement faultElt = f.getDetail();
 
@@ -224,16 +228,15 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature for Asynchronous Invocations
      *
-     * @see fr.jydet.axis2client.nss.SSNCheckerService#startisValid
-     * @param sSN0
+     * @see fr.jydet.axis2client.nss.SSNChecker#startisValid
+     * @param isValid0
      */
     public void startisValid(
-        fr.jydet.axis2client.nss.SSNCheckerServiceStub.SSN sSN0,
-        final fr.jydet.axis2client.nss.SSNCheckerServiceCallbackHandler callback)
+        fr.jydet.axis2client.nss.SSNCheckerStub.IsValid isValid0,
+        final fr.jydet.axis2client.nss.SSNCheckerCallbackHandler callback)
         throws java.rmi.RemoteException {
         org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[0].getName());
-        _operationClient.getOptions()
-                        .setAction("http://services.jydet.fr/SSNChecker/isValidRequest");
+        _operationClient.getOptions().setAction("urn:isValid");
         _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
         addPropertyToOperationClient(_operationClient,
@@ -247,11 +250,12 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
         //Style is Doc.
         env = toEnvelope(getFactory(_operationClient.getOptions()
                                                     .getSoapVersionURI()),
-                sSN0,
+                isValid0,
                 optimizeContent(
                     new javax.xml.namespace.QName("http://services.jydet.fr",
                         "isValid")),
-                new javax.xml.namespace.QName("http://services.jydet.fr", "SSN"));
+                new javax.xml.namespace.QName("http://services.jydet.fr",
+                    "isValid"));
 
         // adding SOAP soap_headers
         _serviceClient.addHeadersToEnvelope(env);
@@ -269,8 +273,8 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
 
                         java.lang.Object object = fromOM(resultEnv.getBody()
                                                                   .getFirstElement(),
-                                fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn.class);
-                        callback.receiveResultisValid((fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn) object);
+                                fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse.class);
+                        callback.receiveResultisValid((fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse) object);
                     } catch (org.apache.axis2.AxisFault e) {
                         callback.receiveErrorisValid(e);
                     }
@@ -382,10 +386,10 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        fr.jydet.axis2client.nss.SSNCheckerServiceStub.SSN param,
+        fr.jydet.axis2client.nss.SSNCheckerStub.IsValid param,
         boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
-            return param.getOMElement(fr.jydet.axis2client.nss.SSNCheckerServiceStub.SSN.MY_QNAME,
+            return param.getOMElement(fr.jydet.axis2client.nss.SSNCheckerStub.IsValid.MY_QNAME,
                 org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -393,10 +397,10 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn param,
+        fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse param,
         boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
-            return param.getOMElement(fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn.MY_QNAME,
+            return param.getOMElement(fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse.MY_QNAME,
                 org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -405,14 +409,14 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
 
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
         org.apache.axiom.soap.SOAPFactory factory,
-        fr.jydet.axis2client.nss.SSNCheckerServiceStub.SSN param,
+        fr.jydet.axis2client.nss.SSNCheckerStub.IsValid param,
         boolean optimizeContent, javax.xml.namespace.QName elementQName)
         throws org.apache.axis2.AxisFault {
         try {
             org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
             emptyEnvelope.getBody()
                          .addChild(param.getOMElement(
-                    fr.jydet.axis2client.nss.SSNCheckerServiceStub.SSN.MY_QNAME,
+                    fr.jydet.axis2client.nss.SSNCheckerStub.IsValid.MY_QNAME,
                     factory));
 
             return emptyEnvelope;
@@ -434,14 +438,14 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
     private java.lang.Object fromOM(org.apache.axiom.om.OMElement param,
         java.lang.Class type) throws org.apache.axis2.AxisFault {
         try {
-            if (fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn.class.equals(
+            if (fr.jydet.axis2client.nss.SSNCheckerStub.IsValid.class.equals(
                         type)) {
-                return fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return fr.jydet.axis2client.nss.SSNCheckerStub.IsValid.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
-            if (fr.jydet.axis2client.nss.SSNCheckerServiceStub.SSN.class.equals(
+            if (fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse.class.equals(
                         type)) {
-                return fr.jydet.axis2client.nss.SSNCheckerServiceStub.SSN.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
         } catch (java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -460,14 +464,24 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
         }
     }
 
-    public static class SSN implements org.apache.axis2.databinding.ADBBean {
+    public static class IsValid implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://services.jydet.fr",
-                "SSN", "ns1");
+                "isValid", "ns1");
 
         /**
          * field for SSN
          */
         protected java.lang.String localSSN;
+
+        /*  This tracker boolean wil be used to detect whether the user called the set method
+         *   for this attribute. It will be used to determine whether to include this field
+         *   in the serialized XML
+         */
+        protected boolean localSSNTracker = false;
+
+        public boolean isSSNSpecified() {
+            return localSSNTracker;
+        }
 
         /**
          * Auto generated getter method
@@ -482,6 +496,8 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
          * @param param SSN
          */
         public void setSSN(java.lang.String param) {
+            localSSNTracker = true;
+
             this.localSSN = param;
         }
 
@@ -510,13 +526,14 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
             javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
             throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
-            //We can safely assume an element has only one type associated with it
-            java.lang.String namespace = "http://services.jydet.fr";
-            java.lang.String _localName = "SSN";
+            java.lang.String prefix = null;
+            java.lang.String namespace = null;
 
-            writeStartElement(null, namespace, _localName, xmlWriter);
+            prefix = parentQName.getPrefix();
+            namespace = parentQName.getNamespaceURI();
+            writeStartElement(prefix, namespace, parentQName.getLocalPart(),
+                xmlWriter);
 
-            // add the type details if this is used in a simple type
             if (serializeType) {
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter,
                         "http://services.jydet.fr");
@@ -525,19 +542,28 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
                         "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":SSN", xmlWriter);
+                        namespacePrefix + ":isValid", xmlWriter);
                 } else {
                     writeAttribute("xsi",
                         "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "SSN", xmlWriter);
+                        "isValid", xmlWriter);
                 }
             }
 
-            if (localSSN == null) {
-                throw new org.apache.axis2.databinding.ADBException(
-                    "SSN cannot be null !!");
-            } else {
-                xmlWriter.writeCharacters(localSSN);
+            if (localSSNTracker) {
+                namespace = "http://services.jydet.fr";
+                writeStartElement(null, namespace, "SSN", xmlWriter);
+
+                if (localSSN == null) {
+                    // write the nil attribute
+                    writeAttribute("xsi",
+                        "http://www.w3.org/2001/XMLSchema-instance", "nil",
+                        "1", xmlWriter);
+                } else {
+                    xmlWriter.writeCharacters(localSSN);
+                }
+
+                xmlWriter.writeEndElement();
             }
 
             xmlWriter.writeEndElement();
@@ -762,9 +788,9 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
              * Postcondition: If this object is an element, the reader is positioned at its end element
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
-            public static SSN parse(javax.xml.stream.XMLStreamReader reader)
+            public static IsValid parse(javax.xml.stream.XMLStreamReader reader)
                 throws java.lang.Exception {
-                SSN object = new SSN();
+                IsValid object = new IsValid();
 
                 int event;
                 javax.xml.namespace.QName currentQName = null;
@@ -778,42 +804,76 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
 
                     currentQName = reader.getName();
 
+                    if (reader.getAttributeValue(
+                                "http://www.w3.org/2001/XMLSchema-instance",
+                                "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
+                                "type");
+
+                        if (fullTypeName != null) {
+                            java.lang.String nsPrefix = null;
+
+                            if (fullTypeName.indexOf(":") > -1) {
+                                nsPrefix = fullTypeName.substring(0,
+                                        fullTypeName.indexOf(":"));
+                            }
+
+                            nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
+
+                            java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
+                                        ":") + 1);
+
+                            if (!"isValid".equals(type)) {
+                                //find namespace for the prefix
+                                java.lang.String nsUri = reader.getNamespaceContext()
+                                                               .getNamespaceURI(nsPrefix);
+
+                                return (IsValid) ExtensionMapper.getTypeObject(nsUri,
+                                    type, reader);
+                            }
+                        }
+                    }
+
                     // Note all attributes that were handled. Used to differ normal attributes
                     // from anyAttributes.
                     java.util.Vector handledAttributes = new java.util.Vector();
 
-                    while (!reader.isEndElement()) {
-                        if (reader.isStartElement()) {
-                            if (reader.isStartElement() &&
-                                    new javax.xml.namespace.QName(
-                                        "http://services.jydet.fr", "SSN").equals(
-                                        reader.getName())) {
-                                nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
-                                        "nil");
+                    reader.next();
 
-                                if ("true".equals(nillableValue) ||
-                                        "1".equals(nillableValue)) {
-                                    throw new org.apache.axis2.databinding.ADBException(
-                                        "The element: " + "SSN" +
-                                        "  cannot be null");
-                                }
+                    while (!reader.isStartElement() && !reader.isEndElement())
+                        reader.next();
 
-                                java.lang.String content = reader.getElementText();
+                    if (reader.isStartElement() &&
+                            new javax.xml.namespace.QName(
+                                "http://services.jydet.fr", "SSN").equals(
+                                reader.getName())) {
+                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
+                                "nil");
 
-                                object.setSSN(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                        content));
-                            } // End of if for expected property start element
+                        if (!"true".equals(nillableValue) &&
+                                !"1".equals(nillableValue)) {
+                            java.lang.String content = reader.getElementText();
 
-                            else {
-                                // 3 - A start element we are not expecting indicates an invalid parameter was passed
-                                throw new org.apache.axis2.databinding.ADBException(
-                                    "Unexpected subelement " +
-                                    reader.getName());
-                            }
+                            object.setSSN(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    content));
                         } else {
-                            reader.next();
+                            reader.getElementText(); // throw away text nodes if any.
                         }
-                    } // end of while loop
+
+                        reader.next();
+                    } // End of if for expected property start element
+
+                    else {
+                    }
+
+                    while (!reader.isStartElement() && !reader.isEndElement())
+                        reader.next();
+
+                    if (reader.isStartElement()) {
+                        // 2 - A start element we are not expecting indicates a trailing invalid property
+                        throw new org.apache.axis2.databinding.ADBException(
+                            "Unexpected subelement " + reader.getName());
+                    }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);
                 }
@@ -823,29 +883,29 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
         } //end of factory class
     }
 
-    public static class IsValidReturn implements org.apache.axis2.databinding.ADBBean {
+    public static class IsValidResponse implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://services.jydet.fr",
-                "isValidReturn", "ns1");
+                "isValidResponse", "ns1");
 
         /**
-         * field for IsValidReturn
+         * field for _return
          */
-        protected boolean localIsValidReturn;
+        protected boolean local_return;
 
         /**
          * Auto generated getter method
          * @return boolean
          */
-        public boolean getIsValidReturn() {
-            return localIsValidReturn;
+        public boolean get_return() {
+            return local_return;
         }
 
         /**
          * Auto generated setter method
-         * @param param IsValidReturn
+         * @param param _return
          */
-        public void setIsValidReturn(boolean param) {
-            this.localIsValidReturn = param;
+        public void set_return(boolean param) {
+            this.local_return = param;
         }
 
         /**
@@ -873,13 +933,14 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
             javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
             throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
-            //We can safely assume an element has only one type associated with it
-            java.lang.String namespace = "http://services.jydet.fr";
-            java.lang.String _localName = "isValidReturn";
+            java.lang.String prefix = null;
+            java.lang.String namespace = null;
 
-            writeStartElement(null, namespace, _localName, xmlWriter);
+            prefix = parentQName.getPrefix();
+            namespace = parentQName.getNamespaceURI();
+            writeStartElement(prefix, namespace, parentQName.getLocalPart(),
+                xmlWriter);
 
-            // add the type details if this is used in a simple type
             if (serializeType) {
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter,
                         "http://services.jydet.fr");
@@ -888,21 +949,26 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
                         "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":isValidReturn", xmlWriter);
+                        namespacePrefix + ":isValidResponse", xmlWriter);
                 } else {
                     writeAttribute("xsi",
                         "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "isValidReturn", xmlWriter);
+                        "isValidResponse", xmlWriter);
                 }
             }
 
+            namespace = "http://services.jydet.fr";
+            writeStartElement(null, namespace, "return", xmlWriter);
+
             if (false) {
                 throw new org.apache.axis2.databinding.ADBException(
-                    "property value cannot be null!!");
+                    "return cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                        localIsValidReturn));
+                        local_return));
             }
+
+            xmlWriter.writeEndElement();
 
             xmlWriter.writeEndElement();
         }
@@ -1126,10 +1192,10 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
              * Postcondition: If this object is an element, the reader is positioned at its end element
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
-            public static IsValidReturn parse(
+            public static IsValidResponse parse(
                 javax.xml.stream.XMLStreamReader reader)
                 throws java.lang.Exception {
-                IsValidReturn object = new IsValidReturn();
+                IsValidResponse object = new IsValidResponse();
 
                 int event;
                 javax.xml.namespace.QName currentQName = null;
@@ -1143,43 +1209,81 @@ public class SSNCheckerServiceStub extends org.apache.axis2.client.Stub {
 
                     currentQName = reader.getName();
 
+                    if (reader.getAttributeValue(
+                                "http://www.w3.org/2001/XMLSchema-instance",
+                                "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
+                                "type");
+
+                        if (fullTypeName != null) {
+                            java.lang.String nsPrefix = null;
+
+                            if (fullTypeName.indexOf(":") > -1) {
+                                nsPrefix = fullTypeName.substring(0,
+                                        fullTypeName.indexOf(":"));
+                            }
+
+                            nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
+
+                            java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
+                                        ":") + 1);
+
+                            if (!"isValidResponse".equals(type)) {
+                                //find namespace for the prefix
+                                java.lang.String nsUri = reader.getNamespaceContext()
+                                                               .getNamespaceURI(nsPrefix);
+
+                                return (IsValidResponse) ExtensionMapper.getTypeObject(nsUri,
+                                    type, reader);
+                            }
+                        }
+                    }
+
                     // Note all attributes that were handled. Used to differ normal attributes
                     // from anyAttributes.
                     java.util.Vector handledAttributes = new java.util.Vector();
 
-                    while (!reader.isEndElement()) {
-                        if (reader.isStartElement()) {
-                            if (reader.isStartElement() &&
-                                    new javax.xml.namespace.QName(
-                                        "http://services.jydet.fr",
-                                        "isValidReturn").equals(
-                                        reader.getName())) {
-                                nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
-                                        "nil");
+                    reader.next();
 
-                                if ("true".equals(nillableValue) ||
-                                        "1".equals(nillableValue)) {
-                                    throw new org.apache.axis2.databinding.ADBException(
-                                        "The element: " + "isValidReturn" +
-                                        "  cannot be null");
-                                }
+                    while (!reader.isStartElement() && !reader.isEndElement())
+                        reader.next();
 
-                                java.lang.String content = reader.getElementText();
+                    if (reader.isStartElement() &&
+                            new javax.xml.namespace.QName(
+                                "http://services.jydet.fr", "return").equals(
+                                reader.getName())) {
+                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
+                                "nil");
 
-                                object.setIsValidReturn(org.apache.axis2.databinding.utils.ConverterUtil.convertToBoolean(
-                                        content));
-                            } // End of if for expected property start element
-
-                            else {
-                                // 3 - A start element we are not expecting indicates an invalid parameter was passed
-                                throw new org.apache.axis2.databinding.ADBException(
-                                    "Unexpected subelement " +
-                                    reader.getName());
-                            }
-                        } else {
-                            reader.next();
+                        if ("true".equals(nillableValue) ||
+                                "1".equals(nillableValue)) {
+                            throw new org.apache.axis2.databinding.ADBException(
+                                "The element: " + "return" +
+                                "  cannot be null");
                         }
-                    } // end of while loop
+
+                        java.lang.String content = reader.getElementText();
+
+                        object.set_return(org.apache.axis2.databinding.utils.ConverterUtil.convertToBoolean(
+                                content));
+
+                        reader.next();
+                    } // End of if for expected property start element
+
+                    else {
+                        // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                        throw new org.apache.axis2.databinding.ADBException(
+                            "Unexpected subelement " + reader.getName());
+                    }
+
+                    while (!reader.isStartElement() && !reader.isEndElement())
+                        reader.next();
+
+                    if (reader.isStartElement()) {
+                        // 2 - A start element we are not expecting indicates a trailing invalid property
+                        throw new org.apache.axis2.databinding.ADBException(
+                            "Unexpected subelement " + reader.getName());
+                    }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);
                 }

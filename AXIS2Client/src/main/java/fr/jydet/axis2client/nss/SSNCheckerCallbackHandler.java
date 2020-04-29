@@ -1,5 +1,5 @@
 /**
- * SSNCheckerServiceCallbackHandler.java
+ * SSNCheckerCallbackHandler.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.7.9  Built on : Nov 16, 2018 (12:05:37 GMT)
@@ -8,10 +8,10 @@ package fr.jydet.axis2client.nss;
 
 
 /**
- *  SSNCheckerServiceCallbackHandler Callback class, Users can extend this class and implement
+ *  SSNCheckerCallbackHandler Callback class, Users can extend this class and implement
  *  their own receiveResult and receiveError methods.
  */
-public abstract class SSNCheckerServiceCallbackHandler {
+public abstract class SSNCheckerCallbackHandler {
     protected Object clientData;
 
     /**
@@ -20,14 +20,14 @@ public abstract class SSNCheckerServiceCallbackHandler {
      * @param clientData Object mechanism by which the user can pass in user data
      * that will be avilable at the time this callback is called.
      */
-    public SSNCheckerServiceCallbackHandler(Object clientData) {
+    public SSNCheckerCallbackHandler(Object clientData) {
         this.clientData = clientData;
     }
 
     /**
      * Please use this constructor if you don't want to set any clientData
      */
-    public SSNCheckerServiceCallbackHandler() {
+    public SSNCheckerCallbackHandler() {
         this.clientData = null;
     }
 
@@ -43,7 +43,7 @@ public abstract class SSNCheckerServiceCallbackHandler {
      * override this method for handling normal response from isValid operation
      */
     public void receiveResultisValid(
-        fr.jydet.axis2client.nss.SSNCheckerServiceStub.IsValidReturn result) {
+        fr.jydet.axis2client.nss.SSNCheckerStub.IsValidResponse result) {
     }
 
     /**

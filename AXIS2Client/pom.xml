@@ -11,27 +11,62 @@
     <artifactId>AXIS2Client</artifactId>
     <name>Axis2 Client</name>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.axis2</groupId>
-                <artifactId>axis2-wsdl2code-maven-plugin</artifactId>
-                <version>1.7.9</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>wsdl2code</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFile>
-                                C:\Users\Trombonesolo\IdeaProjects\AXISTP1\AXIS2Server\src\main\webapp\WEB-INF\services\HelloWorld\META-INF\services.xml
-                            </wsdlFile>
-                            <!--TODO-->
-                            <packageName>Saucise ?</packageName>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.axis2</groupId>-->
+<!--                <artifactId>axis2-wsdl2code-maven-plugin</artifactId>-->
+<!--                <version>1.7.9</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>wsdl2code</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <wsdlFile>-->
+<!--                                C:\Users\Trombonesolo\IdeaProjects\AXISTP1\AXIS2Server\src\main\webapp\WEB-INF\services\HelloWorld\META-INF\services.xml-->
+<!--                            </wsdlFile>-->
+<!--                            &lt;!&ndash;TODO&ndash;&gt;-->
+<!--                            <packageName>Saucise ?</packageName>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-kernel</artifactId>
+            <version>1.7.9</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-local</artifactId>
+            <version>1.7.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-adb</artifactId>
+            <version>1.7.9</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2 -->
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2</artifactId>
+            <version>1.7.9</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-http</artifactId>
+            <version>1.7.9</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -1,13 +1,14 @@
 package fr.jydet.business.calendar.dao;
 
 import fr.jydet.business.calendar.beans.Event;
+import fr.jydet.business.calendar.beans.IEvent;
 
 import java.util.Optional;
 
-public interface EventDao {
-    void remove(Event event);
+public interface EventDao<E extends IEvent> {
+    void remove(E event);
 
-    void save(Event event);
+    void save(E event);
 
-    Optional<Event> findById(Long id);
+    Optional<E> findById(Long id);
 }

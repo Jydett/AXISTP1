@@ -1,6 +1,7 @@
 package fr.jydet.business.calendar;
 
 import fr.jydet.business.calendar.beans.Event;
+import fr.jydet.business.calendar.beans.RepeatEvent;
 import fr.jydet.business.calendar.dao.EventDao;
 
 import javax.jws.WebMethod;
@@ -12,7 +13,8 @@ import java.util.Optional;
 @WebService
 public class EventServices {
 
-    public EventDao eventDao;
+    public EventDao<Event> eventDao;
+    public EventDao<RepeatEvent> repeatEventEventDao;
 
     @WebMethod
     public long saveEvent(Event event) {
@@ -36,16 +38,16 @@ public class EventServices {
 
     @WebMethod
     public List<Event> getEventsAtDay(Calendar date) {
-
+        return null;
     }
 
     @WebMethod
     public List<Event> getEventsAtDayBetweenHour(Calendar date, int hourStart, int hourFinish) {
-
+        return null;
     }
 
     @WebMethod
     public List<Event> getEventsBetweenPeriod(Calendar dateStart, int hourStart, Calendar dateFinish, int hourFinish) {
-
+        return null;
     }
 }

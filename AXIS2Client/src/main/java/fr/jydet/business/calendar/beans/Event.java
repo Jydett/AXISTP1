@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Data
 @Entity
@@ -18,5 +19,13 @@ public class Event implements Identifiable<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //TODO victor
+
+    private String title;
+    private String description;
+    private Repeat repeat;
+    private String location;
+
+    private Date start;
+    private Date end;
+    private boolean allDay;
 }

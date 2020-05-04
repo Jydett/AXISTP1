@@ -1,7 +1,5 @@
 package fr.jydet.business.calendar.beans;
 
-import com.sun.istack.NotNull;
-import fr.jydet.core.persistance.Identifiable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,14 +11,17 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Event implements Identifiable<Long> {
+public class RepeatEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String title;
     private String description;
     private String location;
+
+    @Enumerated(EnumType.STRING)
+    private Repeat repeatType;
 
     @Basic
     @Temporal(TemporalType.TIME)
@@ -29,6 +30,10 @@ public class Event implements Identifiable<Long> {
     @Basic
     @Temporal(TemporalType.TIME)
     private Date end;
+
+    @Basic
+    @Temporal(TemporalType.TIME)
+    private Date endRepeat;
 
     private boolean allDay;
 }

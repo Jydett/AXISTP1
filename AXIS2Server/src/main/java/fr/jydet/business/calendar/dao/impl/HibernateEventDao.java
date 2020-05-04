@@ -5,8 +5,6 @@ import fr.jydet.business.calendar.dao.EventDao;
 import fr.jydet.core.persistance.HibernateDao;
 import org.hibernate.Session;
 
-import java.util.Optional;
-
 public class HibernateEventDao<E extends IEvent> extends HibernateDao<E> implements EventDao<E> {
 
     public HibernateEventDao(Session hibernateSession, Class<E> clazz) {
@@ -14,7 +12,7 @@ public class HibernateEventDao<E extends IEvent> extends HibernateDao<E> impleme
     }
 
     @Override
-    public Optional<E> findById(Long eventId) {
-        return Optional.ofNullable(hibernateSession.get(super.clazz, eventId));
+    public E findById(Long eventId) {
+        return hibernateSession.get(super.clazz, eventId);
     }
 }

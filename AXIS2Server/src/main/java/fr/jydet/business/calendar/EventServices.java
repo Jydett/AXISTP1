@@ -5,6 +5,7 @@ import fr.jydet.business.calendar.dao.EventDao;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,17 +35,17 @@ public class EventServices {
     }
 
     @WebMethod
-    public List<Event> getEventsAtDay(int day, int month, int year) {
+    public List<Event> getEventsAtDay(Calendar date) {
 
     }
 
     @WebMethod
-    public List<Event> getEventsAtDayBetweenHour(int day, int month, int year, int hourStart, int hourFinish) {
+    public List<Event> getEventsAtDayBetweenHour(Calendar date, int hourStart, int hourFinish) {
 
     }
 
     @WebMethod
-    public List<Event> getEventsBetweenPeriod(int dayStart, int monthStart, int yearStart, int hourStart, int dayFinish, int monthFinish, int yearFinish, int hourFinish) {
+    public List<Event> getEventsBetweenPeriod(Calendar dateStart, int hourStart, Calendar dateFinish, int hourFinish) {
 
     }
 }
